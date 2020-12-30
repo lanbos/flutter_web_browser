@@ -11,6 +11,7 @@ import java.util.HashMap;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
+import android.content.Intent;
 
 public class MethodCallHandlerImpl implements MethodCallHandler {
 
@@ -76,6 +77,8 @@ public class MethodCallHandlerImpl implements MethodCallHandler {
 
     CustomTabsIntent customTabsIntent = builder.build();
     customTabsIntent.intent.setPackage(getPackageName());
+    customTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+
     customTabsIntent.launchUrl(activity, Uri.parse(url));
 
     result.success(null);
